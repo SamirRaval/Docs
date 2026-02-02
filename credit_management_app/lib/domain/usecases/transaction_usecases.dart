@@ -151,8 +151,14 @@ class TransactionUseCases {
   }
 
   /// Generate a unique reference number
+  /// Format: TXN + YYYYMMDD + unique suffix (last 5 digits of timestamp)
   String _generateReferenceNumber() {
     final now = DateTime.now();
-    return 'TXN${now.year}${now.month.toString().padLeft(2, '0')}${now.day.toString().padLeft(2, '0')}${now.millisecondsSinceEpoch.toString().substring(8)}';
+    final datePart = '${now.year}${now.month.toString().padLeft(2, '0')}${now.day.toString().padLeft(2, '0')}';
+    // Use last 5 digits of milliseconds timestamp for uniqueness
+    const uniqueSuffixLength = 5;
+    final timestampStr = now.millisecondsSinceEpoch.toString();
+    final uniqueSuffix = timestampStr.substring(timestampStr.length - uniqueSuffixLength);
+    return 'TXN$datePart$uniqueSuffix';
   }
 }

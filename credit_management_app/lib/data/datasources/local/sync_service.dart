@@ -136,7 +136,7 @@ class SyncService extends GetxService {
           final updatedCustomer = customer.toJson();
           updatedCustomer['isSynced'] = true;
           await _localDatabase.saveCustomer(
-            CustomerModelFromJson(updatedCustomer),
+            customerModelFromJson(updatedCustomer),
           );
         }
         break;
@@ -146,7 +146,7 @@ class SyncService extends GetxService {
           final updatedCredit = credit.toJson();
           updatedCredit['isSynced'] = true;
           await _localDatabase.saveCredit(
-            CreditModelFromJson(updatedCredit),
+            creditModelFromJson(updatedCredit),
           );
         }
         break;
@@ -156,7 +156,7 @@ class SyncService extends GetxService {
           final updatedTransaction = transaction.toJson();
           updatedTransaction['isSynced'] = true;
           await _localDatabase.saveTransaction(
-            TransactionModelFromJson(updatedTransaction),
+            transactionModelFromJson(updatedTransaction),
           );
         }
         break;
@@ -207,11 +207,14 @@ import '../../models/customer_model.dart';
 import '../../models/credit_model.dart';
 import '../../models/transaction_model.dart';
 
-CustomerModel CustomerModelFromJson(Map<String, dynamic> json) => 
+/// Create CustomerModel from JSON map
+CustomerModel customerModelFromJson(Map<String, dynamic> json) => 
     CustomerModel.fromJson(json);
 
-CreditModel CreditModelFromJson(Map<String, dynamic> json) => 
+/// Create CreditModel from JSON map
+CreditModel creditModelFromJson(Map<String, dynamic> json) => 
     CreditModel.fromJson(json);
 
-TransactionModel TransactionModelFromJson(Map<String, dynamic> json) => 
+/// Create TransactionModel from JSON map
+TransactionModel transactionModelFromJson(Map<String, dynamic> json) => 
     TransactionModel.fromJson(json);
